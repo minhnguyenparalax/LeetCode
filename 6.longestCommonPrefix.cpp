@@ -18,7 +18,7 @@ public:
 };
 
 int main()
-{
+{ 
     Solution slt;
     vector<string> strs = {"dog","racecar","car"};
     cout<<slt.longestCommonPrefix(strs);
