@@ -16,10 +16,28 @@ public:
         return prefix;
     }
 };
-
+void input_string(vector<string> &strs);
 int main()
 { 
     Solution slt;
-    vector<string> strs = {"dog","racecar","car"};
+    vector<string> strs;
+    input_string(strs);
     cout<<slt.longestCommonPrefix(strs);
+}
+
+void input_string(vector<string> &strs)
+{
+    cout<<"Nhap chuoi: (nhap ""Dung Khong them nhap nua"" de dung lai)"<<endl;
+    int i = 0;
+    string stop_string="Dung Khong them nhap nua";
+    string tmp = "";
+    while(true)
+    {
+        cout<<"string["<<i<<"]: ";
+        getline(cin,tmp);
+        if(tmp == "Dung Khong them nhap nua")   
+            break;
+        strs.push_back(tmp);
+        i++;
+    }
 }
