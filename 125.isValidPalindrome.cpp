@@ -13,7 +13,7 @@ public:
                 newStr += tolower(i);
             }
         }
-        int l = 0, r = newStr.size() - 1;
+
         while (l < r) {
             if (newStr[l++] != newStr[r--]) return false;
         }
