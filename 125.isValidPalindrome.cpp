@@ -6,17 +6,5 @@
 
 class Solution {
 public:
-    bool isPalindrome(string s) {
-        string newStr = "";
-        for (char i : s) {
-            if (isalnum(i)) {
-                newStr += tolower(i);
-            }
-        }
-
-        while (l < r) {
-            if (newStr[l++] != newStr[r--]) return false;
-        }
-        return true;
-    }
+    
 };
