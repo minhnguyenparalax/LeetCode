@@ -1,6 +1,6 @@
 // Given two strings s and t, return true if t is an anagram of s, and false otherwise.
 
- 
+//anargram là chuỗi nhỏ của một chuỗi lớn
 
 // Example 1:
 
