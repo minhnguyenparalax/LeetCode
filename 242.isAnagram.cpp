@@ -22,21 +22,23 @@ using namespace std;
 class Solution {
 public:
     bool isAnagram(string s, string t) {
-        if (s.size() != t.size()) return false;
-
-        // tạo 2 vector lưu tần suất ký tự
-        vector<int> freqS(26, 0);
-        vector<int> freqT(26, 0);
-
-        for (char c : s) {
-            freqS[c - 'a']++;
+        if (s.length() != t.length()) {
+            return false;
         }
-        for (char c : t) {
-            freqT[c - 'a']++;
+        
+        vector<int> freq(26, 0);
+        for (int i = 0; i < s.length(); i++) {
+            freq[s[i] - 'a']++;
+            freq[t[i] - 'a']--;
         }
-
-        // so sánh trực tiếp 2 vector
-        return freqS == freqT;
+        
+        for (int i = 0; i < freq.size(); i++) {
+            if (freq[i] != 0) {
+                return false;
+            }
+        }
+        
+        return true;
     }
 };
 
@@ -48,7 +50,11 @@ int main() {
     cin >> t;
 
     Solution sol;
-    cout << (sol.isAnagram(s, t) ? "true" : "false") << endl;
+    if (sol.isAnagram(s, t)) {
+        cout << "true" << endl;
+    } else {
+        cout << "false" << endl;
+    }
 
     return 0;
 }
