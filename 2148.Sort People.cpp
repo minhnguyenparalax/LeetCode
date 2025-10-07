@@ -48,12 +48,12 @@ int main() {
     for (auto &name : result1) cout << name << " ";
     cout << endl;
 
-    // Test 2
-    vector<string> names2 = {"Alice", "Bob", "Bob"};
-    vector<int> heights2 = {155, 185, 150};
-    vector<string> result2 = s.sortPeople(names2, heights2);
-    for (auto &name : result2) cout << name << " ";
-    cout << endl;
+    // // Test 2
+    // vector<string> names2 = {"Alice", "Bob", "Bob"};
+    // vector<int> heights2 = {155, 185, 150};
+    // vector<string> result2 = s.sortPeople(names2, heights2);
+    // for (auto &name : result2) cout << name << " ";
+    // cout << endl;
 
-    return 0;
+    // return 0;
 }
