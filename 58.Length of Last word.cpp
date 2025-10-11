@@ -28,29 +28,29 @@ public:
     int lengthOfLastWord(string s) {
         int end = s.length() - 1;
 
+        // Bỏ khoảng trắng ở cuối
         while (end >= 0 && s[end] == ' ') {
             end--;
         }
 
         int start = end;
+        // Tìm vị trí bắt đầu của từ cuối cùng
         while (start >= 0 && s[start] != ' ') {
             start--;
         }
 
-        return end - start;        
+        return end - start;
     }
 };
 
 int main() {
     Solution sol;
+    string s;
 
-    string s1 = "Hello World";
-    string s2 = "   fly me   to   the moon  ";
-    string s3 = "luffy is still joyboy";
+    cout << "Nhập chuỗi: ";
+    getline(cin, s); // Cho phép nhập cả khoảng trắng
 
-    cout << "Input: \"" << s1 << "\" -> Output: " << sol.lengthOfLastWord(s1) << endl;
-    cout << "Input: \"" << s2 << "\" -> Output: " << sol.lengthOfLastWord(s2) << endl;
-    cout << "Input: \"" << s3 << "\" -> Output: " << sol.lengthOfLastWord(s3) << endl;
+    cout << "Độ dài của từ cuối cùng là: " << sol.lengthOfLastWord(s) << endl;
 
     return 0;
 }
