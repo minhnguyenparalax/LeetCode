@@ -24,8 +24,7 @@ private:
 public:
     // ======= Hàm khởi tạo =======
     LinkedList() {
-        // Dùng "dummy node" để đơn giản hóa việc xóa đầu danh sách
-        head = new ListNode(-1);
+        head = new ListNode(-1); // Dùng "dummy node"
         tail = head;
     }
 
@@ -34,9 +33,7 @@ public:
         ListNode* curr = head->next;
         int i = 0;
         while (curr != nullptr) {
-            if (i == index) {
-                return curr->val;
-            }
+            if (i == index) return curr->val;
             i++;
             curr = curr->next;
         }
@@ -48,10 +45,7 @@ public:
         ListNode* newNode = new ListNode(val);
         newNode->next = head->next;
         head->next = newNode;
-        // Nếu danh sách trống ban đầu, cập nhật lại tail
-        if (newNode->next == nullptr) {
-            tail = newNode;
-        }
+        if (newNode->next == nullptr) tail = newNode;
     }
 
     // ======= Chèn phần tử vào cuối danh sách =======
@@ -69,11 +63,8 @@ public:
             curr = curr->next;
         }
 
-        // Nếu tìm thấy nút cần xóa
         if (curr != nullptr && curr->next != nullptr) {
-            if (curr->next == tail) {
-                tail = curr; // Nếu xóa nút cuối, cập nhật tail
-            }
+            if (curr->next == tail) tail = curr; // Nếu xóa nút cuối
             ListNode* toDelete = curr->next;
             curr->next = curr->next->next;
             delete toDelete;
@@ -82,21 +73,10 @@ public:
         return false;
     }
 
-    // ======= Trả về toàn bộ giá trị trong danh sách =======
-    vector<int> getValues() {
-        vector<int> res;
-        ListNode* curr = head->next;
-        while (curr != nullptr) {
-            res.push_back(curr->val);
-            curr = curr->next;
-        }
-        return res;
-    }
-
     // ======= In danh sách ra màn hình =======
     void printList() {
         ListNode* curr = head->next;
-        cout << "Danh sach: ";
+        cout << "Danh sach hien tai: ";
         while (curr != nullptr) {
             cout << curr->val << " ";
             curr = curr->next;
@@ -105,32 +85,62 @@ public:
     }
 };
 
-// ======= Hàm main để chạy thử =======
+// ======= Hàm main: cho phép nhập lệnh từ người dùng =======
 int main() {
     LinkedList list;
+    int choice;
 
-    // Thêm phần tử vào cuối danh sách
-    list.insertTail(10);
-    list.insertTail(20);
-    list.insertTail(30);
-    list.printList(); // Kết quả: 10 20 30
+    do {
+        cout << "\n===== MENU =====\n";
+        cout << "1. Chen vao dau danh sach\n";
+        cout << "2. Chen vao cuoi danh sach\n";
+        cout << "3. Lay gia tri tai vi tri\n";
+        cout << "4. Xoa phan tu tai vi tri\n";
+        cout << "5. In danh sach\n";
+        cout << "0. Thoat\n";
+        cout << "================\n";
+        cout << "Nhap lua chon: ";
+        cin >> choice;
 
-    // Thêm phần tử vào đầu danh sách
-    list.insertHead(5);
-    list.printList(); // Kết quả: 5 10 20 30
+        if (choice == 1) {
+            int val;
+            cout << "Nhap gia tri can chen vao dau: ";
+            cin >> val;
+            list.insertHead(val);
+        }
+        else if (choice == 2) {
+            int val;
+            cout << "Nhap gia tri can chen vao cuoi: ";
+            cin >> val;
+            list.insertTail(val);
+        }
+        else if (choice == 3) {
+            int index;
+            cout << "Nhap vi tri can lay: ";
+            cin >> index;
+            int value = list.get(index);
+            if (value == -1) cout << "Khong ton tai vi tri nay!\n";
+            else cout << "Gia tri tai vi tri " << index << " la: " << value << endl;
+        }
+        else if (choice == 4) {
+            int index;
+            cout << "Nhap vi tri can xoa: ";
+            cin >> index;
+            if (list.remove(index)) cout << "Da xoa thanh cong.\n";
+            else cout << "Khong ton tai vi tri nay!\n";
+        }
+        else if (choice == 5) {
+            list.printList();
+        }
+        else if (choice == 0) {
+            cout << "Thoat chuong trinh.\n";
+        }
+        else {
+            cout << "Lua chon khong hop le!\n";
+        }
 
-    // Lấy giá trị tại index 2
-    cout << "Gia tri tai vi tri 2: " << list.get(2) << endl; // 20
-
-    // Xóa phần tử tại index 1
-    list.remove(1);
-    list.printList(); // Kết quả: 5 20 30
-
-    // Lấy toàn bộ giá trị ra vector
-    vector<int> vals = list.getValues();
-    cout << "Cac gia tri trong vector: ";
-    for (int v : vals) cout << v << " ";
-    cout << endl;
+    } while (choice != 0);
 
     return 0;
 }
+
