@@ -3,6 +3,7 @@
 #include <unordered_set>
 using namespace std;
 
+// ===== Hàm kiểm tra xem có phần tử trùng không =====
 bool containsDuplicate(vector<int>& nums) {
     unordered_set<int> seen; // Tập hợp lưu các số đã gặp
 
@@ -16,14 +17,22 @@ bool containsDuplicate(vector<int>& nums) {
     return false; // Không có phần tử trùng
 }
 
-// ==== Hàm main để test thử ====
+// ===== Hàm main: cho phép người dùng tự nhập =====
 int main() {
-    vector<int> nums1 = {1, 2, 3, 3};
-    vector<int> nums2 = {1, 2, 3, 4};
+    int n;
+    cout << "Nhap so luong phan tu: ";
+    cin >> n;
 
-    cout << boolalpha; // In true/false thay vì 1/0
-    cout << "Example 1: " << containsDuplicate(nums1) << endl; // true
-    cout << "Example 2: " << containsDuplicate(nums2) << endl; // false
+    vector<int> nums(n);
+    cout << "Nhap " << n << " phan tu: ";
+    for (int i = 0; i < n; i++) {
+        cin >> nums[i];
+    }
+
+    cout << boolalpha; // In "true/false" thay vì "1/0"
+    bool result = containsDuplicate(nums);
+
+    cout << "Mang co phan tu trung? " << result << endl;
 
     return 0;
 }
